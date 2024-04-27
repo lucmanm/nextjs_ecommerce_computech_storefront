@@ -1,50 +1,19 @@
+import { CarouselBrandRow } from "@/components/CarouselBrandRow";
 import { CarouselProductRow } from "@/components/CarouselProductRow";
-import CarouselWide from "@/components/CarouselWide";
-import { getCarouselWide } from "@/lib/actions/getCarousels";
-import { getProducts } from "@/lib/actions/getCategory";
-import { useLocale, useTranslations } from "next-intl";
+import { CarouselWide } from "@/components/CarouselWide";
+import { getCarouselWide } from "@/lib/actions/getCarousel";
 
-import { z } from "zod";
 
-// Define schema for short description
-const ShortDescriptionSchema = z.object({
-  ar: z.string(),
-  en: z.string()
-});
-
-// Define schema for OptiplexModel
-const ProductScheSchema = z.object({
-  id: z.string(),
-  model: z.string(),
-  shortDescription: ShortDescriptionSchema,
-  stock: z.number(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  isFeatured: z.boolean(),
-  isLive: z.boolean(),
-  price: z.string(),
-  taxValue: z.string(),
-  brandId: z.string(),
-  categoryId: z.string()
-});
-
-type TProductScheSchema = z.infer<typeof ProductScheSchema>
-
-export default async function Home() {
-  const locale = useLocale()
-  const carouselWide = await getCarouselWide(locale)
-  const products: TProductScheSchema[] = await getProducts(locale)
-  console.log(products);
-  
+export default async function Home({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
+  const carouselWide = await getCarouselWide(locale);
   return (
-    <main className="container py-4 space-y-4">
-      <CarouselWide item={carouselWide}/>
-      <CarouselProductRow/>
-      {
-        products.map((data, index) => (
-          <div key={index}>{locale === "en" ? data.shortDescription.en : data.shortDescription.ar}</div>
-        ))
-      }
+    <main className="space-y-4 p-2 md:container md:py-4 block">
+      <CarouselWide item={carouselWide} />
+      <CarouselBrandRow />
+      <CarouselProductRow titleLeft="Featured" />
+      <CarouselProductRow titleLeft="Desktop" />
+      <CarouselProductRow titleLeft="Laptop" />
     </main>
   );
 }

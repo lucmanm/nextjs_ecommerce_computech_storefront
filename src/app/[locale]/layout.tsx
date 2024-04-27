@@ -4,9 +4,11 @@ import { Cairo as FontSans } from "next/font/google";
 import "../globals.css";
 
 import { cn } from "@/lib/utils";
-import useTextDirection from "@/hook/useTextDirection";
-import LocaleSwitcher from "@/components/header/LocaleSwitcher";
 import { Header } from "@/components/header";
+import Footer from "@/components/Footer";
+import ModalProvider from "@/provider/ModalProvide";
+import { Toaster } from "@/components/ui/toaster";
+import useTextDirection from "@/hook/useTextDirection";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const fontSans = FontSans({
-  subsets: ["latin"], 
+  subsets: ["latin"],
   variable: "--font-sans",
 });
 
@@ -27,16 +29,14 @@ export default function RootLayout({
 
   return (
     <html lang={locale} dir={direction}>
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased bg-slate-100",
-          fontSans.variable
-        )}
-      >
-        <main className={`${direction === "rtl" && "text-right"}`}>
+      <body className={cn(fontSans.variable)}>
+        <main className="flex h-lvh flex-col bg-background bg-slate-100 font-sans">
           <NextIntlClientProvider messages={messages}>
+            <ModalProvider />
             <Header />
             {children}
+            <Footer />
+            <Toaster />
           </NextIntlClientProvider>
         </main>
       </body>

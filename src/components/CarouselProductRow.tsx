@@ -1,38 +1,38 @@
 import * as React from "react";
 
-import { Card, CardContent } from "@/components/ui/card";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
+import { getProducts } from "@/lib/actions/getProducts";
 import useTextDirection from "@/hook/useTextDirection";
+import { useLocale } from "next-intl";
+import { string, z } from "zod";
+import { productsSchema } from "@/zod.type";
+import { ProductCard } from "./ProductCard";
 
-export function CarouselProductRow() {
-  const locale = useTextDirection()
-  
+export async function CarouselProductRow({ titleLeft }: { titleLeft: string }) {
+  const locale = useLocale();
+  const dir = useTextDirection();
+  const products: z.infer<typeof productsSchema>[] = await getProducts(locale);
   return (
     <Carousel
       opts={{
         align: "start",
         loop: true,
-        direction: locale
+        direction: dir,
       }}
-      className="w-full "
+      className="w-full"
     >
-      <CarouselContent>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+      <span className="relative max-w-fit rounded-full bg-white px-4  font-bold text-blue-950 shadow-md">
+        {titleLeft}
+      </span>
+      <CarouselContent className="py-6">
+        {products.map((item, index) => (
+          <CarouselItem key={index} className="basis-1/2 lg:basis-1/5 ">
+            <ProductCard item={item} />
           </CarouselItem>
         ))}
       </CarouselContent>

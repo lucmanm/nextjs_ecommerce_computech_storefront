@@ -8,9 +8,8 @@ import {
 } from "@/components/ui/sheet";
 import { getProductCategory } from "@/lib/actions/getCategory";
 import { cn } from "@/lib/utils";
-import { TCategory } from "@/types/type";
 import { Menu } from "lucide-react";
-
+// unused
 export const MenuSheet = ({ className }: { className: string }) => {
   return (
     <Sheet>
@@ -20,7 +19,7 @@ export const MenuSheet = ({ className }: { className: string }) => {
       <SheetContent className="max-w-xs">
         <SheetHeader>
           <SheetTitle>Category Menu</SheetTitle>
-          {categoryData?.map((data, index) => (
+          {/* {categoryData?.map((data, index) => (
             <SheetDescription
               key={index}
               asChild
@@ -28,7 +27,7 @@ export const MenuSheet = ({ className }: { className: string }) => {
             >
               <a href={`/product/${data.categoryName}`}>{data.categoryName}</a>
             </SheetDescription>
-          ))}
+          ))} */}
         </SheetHeader>
       </SheetContent>
     </Sheet>

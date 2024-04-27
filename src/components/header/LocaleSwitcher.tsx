@@ -18,7 +18,7 @@ const LocaleSwitcher = () => {
   };
   return (
     <Select onValueChange={handleSelectChange}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[140px]">
         <SelectValue placeholder={t("title")} />
       </SelectTrigger>
       <SelectContent>

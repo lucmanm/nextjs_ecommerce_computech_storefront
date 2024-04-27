@@ -16,7 +16,7 @@ const topNavigationMenu = [
 
 const TopHeader = () => {
   return (
-    <div className="container relative flex flex-wrap justify-between ">
+    <div className="container relative flex justify-between border-b">
       <div className="flex items-center gap-4">
         {topNavigationMenu.map((data, index) => (
           <Link key={index} href={data.url} className="flex inset-0 space-x-2">

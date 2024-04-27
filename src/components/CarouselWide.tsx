@@ -4,26 +4,15 @@ import Image from "next/image";
 import "@splidejs/react-splide/css";
 import { z } from "zod";
 import useTextDirection from "@/hook/useTextDirection";
+import { sliderCarouselWideSchema } from "@/zod.type";
 
-//ZodSchema
-const carouselWideSchema = z.object({
-  id: z.string(),
-  label: z.string(),
-  imageUrl: z.string().url(),
-  languageId: z.string(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
-});
-
-//ZodInfered
-type TCarouselCarouselWide = z.infer<typeof carouselWideSchema>;
-
-type TCarouselCarouselWideProps = {
-  item: TCarouselCarouselWide[];
+type TItemProps = {
+  item: z.infer<typeof sliderCarouselWideSchema>[];
 };
 
-const CarouselWide: React.FC<TCarouselCarouselWideProps> = ({ item }) => {
-  const locale = useTextDirection()  
+export const CarouselWide: React.FC<TItemProps> = ({ item }) => {
+  const dir = useTextDirection();
+
   return (
     <Splide
       hasTrack={false}
@@ -34,15 +23,14 @@ const CarouselWide: React.FC<TCarouselCarouselWideProps> = ({ item }) => {
         autoplay: true,
         interval: 5000,
         gap: "2rem",
-        direction: locale
+        direction: dir,
       }}
       aria-label="slider"
-      className="z-0 shadow"
-      
+      className="z-0 shadow bg-white"
     >
       <SplideTrack className="gap-x-2">
         {item.map(({ label, imageUrl }) => (
-          <SplideSlide key={imageUrl} className="">
+          <SplideSlide key={imageUrl}>
             <Image
               src={imageUrl}
               width={1280}
@@ -62,4 +50,3 @@ const CarouselWide: React.FC<TCarouselCarouselWideProps> = ({ item }) => {
   );
 };
 
-export default CarouselWide;

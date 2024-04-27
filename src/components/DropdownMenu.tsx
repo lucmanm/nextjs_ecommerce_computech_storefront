@@ -26,10 +26,11 @@ type TDropdownMenu = {
 };
 
 export function DropdownMenu({ name, item }: TDropdownMenu) {
-  const pathname = usePathname()
+  const locale = useLocale();
+  const pathname = usePathname();
 
   return (
-    <NavigationMenu >
+    <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="bg-gray-100 rounded-full shadow w-40 font-bold text-lg">
@@ -37,9 +38,14 @@ export function DropdownMenu({ name, item }: TDropdownMenu) {
           </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul
-              className={`grid w-[150px] gap-3 p-2  md:grid-cols-1 capitalize`}            >
+              className={`grid w-[150px] gap-3 p-2  md:grid-cols-1 capitalize`}
+            >
               {item.map((data, index) => (
-                <ListItem href={`${pathname}/${data.name}`} title={data.name} key={index} />
+                <ListItem
+                  href={`/${locale}/product/${data.name}`}
+                  title={data.name}
+                  key={index}
+                />
               ))}
             </ul>
           </NavigationMenuContent>
@@ -55,7 +61,6 @@ const ListItem = React.forwardRef<
 >(({ className, title, children, ...props }, ref) => {
   return (
     <li>
-      
       <NavigationMenuLink asChild>
         <a
           ref={ref}
