@@ -1,6 +1,6 @@
 import { ImagesPreview } from "@/app/[locale]/[product]/components/ImagesPreview";
 import { getProduct } from "@/actions/getProducts";
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import React from "react";
 import { z } from "zod";
 import { ProductDetails } from "./components/ProductDetails";

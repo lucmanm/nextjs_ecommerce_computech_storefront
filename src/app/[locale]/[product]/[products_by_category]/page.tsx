@@ -1,5 +1,5 @@
 import { getProductsByCategoryOrBrand } from "@/actions/getProducts";
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import { z } from "zod";
 import NoResult from "./_components/NoResult";
 import { ProductCard } from "@/components/ProductCard";

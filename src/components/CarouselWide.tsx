@@ -4,7 +4,7 @@ import Image from "next/image";
 import "@splidejs/react-splide/css";
 import { z } from "zod";
 import useTextDirection from "@/hook/useTextDirection";
-import { sliderCarouselWideSchema } from "@/zod.type";
+import { sliderCarouselWideSchema } from "@/lib/zod.type";
 
 type TItemProps = {
   item: z.infer<typeof sliderCarouselWideSchema>[];

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ExpandIcon, Heart, ShoppingCartIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import { z } from "zod";
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hook/usePreviewModal";
 import { useRouter } from "next/navigation";

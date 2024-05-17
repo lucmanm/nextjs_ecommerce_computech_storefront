@@ -8,28 +8,42 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import useTextDirection from "@/hook/useTextDirection";
+import { getBrands } from "@/actions/getBrand";
+import { useLocale } from "next-intl";
+import Image from "next/image";
 
-export function CarouselBrandRow() {
-  const dir = useTextDirection()
-  
+// TypeProps
+type TBrand = {
+  name: string;
+  imageUrl: string;
+};
+export async function CarouselBrandRow() {
+  const dir = useTextDirection();
+  const locale = useLocale();
+  const brandData: TBrand[] = await getBrands(locale);
+
   return (
     <Carousel
       opts={{
         align: "start",
         loop: true,
-        direction: dir
+        direction: dir,
       }}
       className="w-full "
     >
       <CarouselContent>
-        {Array.from({ length: 15 }).map((_, index) => (
-          <CarouselItem key={index} className="basis-1/4 md:basis-1/6 lg:basis-1/12 rounded">
-            <div className="p-1">
+        {brandData.map((data, index) => (
+          <CarouselItem
+            key={index}
+            className="basis-1/4 rounded md:basis-1/6 lg:basis-1/12"
+          >
+            <div className="p-1 text-center text-xs lg:text-base">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
+                  <Image alt={data.name} src={data.imageUrl} width={400} height={400}/>
                 </CardContent>
               </Card>
+              <span className="font-semibold capitalize">{data.name}</span>
             </div>
           </CarouselItem>
         ))}

@@ -1,6 +1,6 @@
 import { CustomButton } from "@/components/CustomButton";
 import { Card } from "@/components/ui/card";
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import Image from "next/image";
 import React from "react";
 import { z } from "zod";

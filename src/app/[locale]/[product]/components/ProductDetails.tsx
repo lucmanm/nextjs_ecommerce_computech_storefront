@@ -1,5 +1,5 @@
 import { CustomButton } from "@/components/CustomButton";
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import { ShoppingCart } from "lucide-react";
 import { z } from "zod";
 

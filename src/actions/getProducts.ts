@@ -9,8 +9,8 @@ export async function getProduct(locale: string, product: string) {
 }
 
 // fetch all products
-export async function getProducts(locale: string) {
-  const res = await fetch(`${env.NEXT_DEV_API_URL}/${locale}/products`);
+export async function getProducts(locale: string,categoryName: string) {
+  const res = await fetch(`${env.NEXT_DEV_API_URL}/${locale}/products?category=${categoryName}`);
   if (!res.ok) throw new Error("FAIL_FETCH_GET_PRODUCTS");
   const data = await res.json();
   return data.products;

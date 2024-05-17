@@ -2,7 +2,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from 'zustand/middleware'
 
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import { z } from "zod";
 import { toast } from "@/components/ui/use-toast";
 

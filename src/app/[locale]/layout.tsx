@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang={locale} dir={direction}>
       <body className={cn(fontSans.variable)}>
-        <main className="flex h-lvh flex-col bg-background bg-slate-100 font-sans">
+        <main className="flex  flex-col bg-background bg-slate-100 font-sans">
           <NextIntlClientProvider messages={messages}>
             <ModalProvider />
             <Header />

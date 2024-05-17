@@ -11,9 +11,11 @@ export default async function Home({ params }: { params: { locale: string } }) {
     <main className="space-y-4 p-2 md:container md:py-4 block">
       <CarouselWide item={carouselWide} />
       <CarouselBrandRow />
-      <CarouselProductRow titleLeft="Featured" />
-      {/* <CarouselProductRow titleLeft="Desktop" /> */}
-      {/* <CarouselProductRow titleLeft="Laptop" /> */}
+      <CarouselProductRow title="pc" />
+      <CarouselProductRow title="Printers" />
+      <CarouselProductRow title="pc" />
+      <CarouselProductRow title="Monitors" />
+      <CarouselProductRow title="nb" />
     </main>
   );
 }

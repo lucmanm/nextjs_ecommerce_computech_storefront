@@ -1,4 +1,4 @@
-import { productsSchema } from "@/zod.type";
+import { productsSchema } from "@/lib/zod.type";
 import { z } from "zod";
 import { create } from "zustand";
 
