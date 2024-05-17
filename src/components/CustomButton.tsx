@@ -7,6 +7,7 @@ type TCustomButton = {
   icon?: React.ReactElement;
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  isDisabled?: boolean | undefined;
 };
 
 export const CustomButton: React.FC<TCustomButton> = ({
@@ -14,9 +15,11 @@ export const CustomButton: React.FC<TCustomButton> = ({
   icon,
   className,
   onClick,
+  isDisabled,
 }) => {
   return (
     <Button
+      disabled={isDisabled}
       className={cn("flex items-center rounded-full px-2", className)}
       variant="ghost"
       onClick={onClick}

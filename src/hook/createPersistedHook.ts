@@ -1,3 +1,4 @@
+
 import { create } from "zustand";
 import { persist, createJSONStorage } from 'zustand/middleware'
 
@@ -7,26 +8,26 @@ import { toast } from "@/components/ui/use-toast";
 
 type TProduct = z.infer<typeof productsSchema>
 
-type TCartProps = {
+type TProps = {
     items: TProduct[]
     addItem: (product: TProduct) => void
     removeItem: (id: string) => void
     removeAll: () => void
 }
-export const useCart = create(
-    persist<TCartProps>((set, get) => ({
+const createPersistedHook = (name: string) => create(
+    persist<TProps>((set, get) => ({
         items: [],
         addItem: (product: TProduct) => {
             const currentItems = get().items
             const checkExistingItems = currentItems.find((item) => item.id === product.id)
             if (checkExistingItems) {
                 return toast({
-                    description: "Product Already in Cart",
+                    description: "Product Already exist",
                     variant: "destructive"
                 })
             }
             set({ items: [...get().items, product] })
-            toast({ description: "Successfully Added to cart", variant: "success"})
+            toast({ description: `Successfully added ${name}`, variant: "success" })
         },
         removeItem: (id: string) => {
             set({ items: [...get().items.filter(item => item.id !== id)] })
@@ -36,9 +37,12 @@ export const useCart = create(
             set({ items: [] })
         }
     }),
-    {
-        name: "cart-storage",
-        storage: createJSONStorage(() => localStorage)
-    }
-), 
+        {
+            name: `${name}-storage`,
+            storage: createJSONStorage(() => localStorage)
+        }
+    ),
 )
+
+export const useCart = createPersistedHook("cart")
+export const useWishlist = createPersistedHook("wishlist")

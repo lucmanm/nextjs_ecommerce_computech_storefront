@@ -25,7 +25,7 @@ export const CategoryDropdownMenu: React.FC<TCategoryProps> = async ({
             <a
               href={`${locale}/product/${data.name}`}
               key={index}
-              className="w-full whitespace-pre border border-b-gray-300 bg-gray-200 px-2 py-2 font-medium capitalize text-gray-600 hover:bg-gray-100 hover:text-black z-50"
+              className="w-full whitespace-pre border border-b-gray-300 bg-gray-200 px-2 py-2 font-medium capitalize text-gray-600 hover:bg-gray-100 hover:text-black z-50 inline-block"
             >
               {data.name}
             </a>

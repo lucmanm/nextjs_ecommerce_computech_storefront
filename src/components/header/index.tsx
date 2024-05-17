@@ -1,13 +1,12 @@
-import { cn } from "@/lib/utils";
 import React from "react";
 import { Logo } from "./logo";
 import { SearchInput } from "./SearchInput";
-import { getProductCategory } from "@/lib/actions/getCategory";
+import { getProductCategory } from "@/actions/getCategory";
 import { useLocale } from "next-intl";
 import { DropdownMenu } from "../DropdownMenu";
 import useTextDirection from "@/hook/useTextDirection";
-import TopHeader from "./TopHeader";
 import Cart from "./Cart";
+import { TopHeader } from "./TopHeader";
 
 export const Header = async ({ className }: { className?: string }) => {
   const direction = useTextDirection();
@@ -17,8 +16,8 @@ export const Header = async ({ className }: { className?: string }) => {
   return (
     <header className="border-b bg-slate-100 md:shadow-md">
       <TopHeader />
-      <div className="bg-white">
-        <div className="flex flex-wrap items-center justify-between py-4  lg:container gap-x-4">
+      <div className="bg-white px-2">
+        <div className="flex flex-wrap items-center justify-between py-4  lg:container gap-x-4 ">
           {/* Side menu */}
           {/* <SheetSide className="rounded-full p-2 hover:bg-blue-950 hover:text-white" /> */}
 

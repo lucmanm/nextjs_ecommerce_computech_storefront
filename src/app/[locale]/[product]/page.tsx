@@ -1,10 +1,13 @@
 import { ImagesPreview } from "@/app/[locale]/[product]/components/ImagesPreview";
-import { getProduct } from "@/lib/actions/getProducts";
+import { getProduct } from "@/actions/getProducts";
 import { productsSchema } from "@/zod.type";
 import React from "react";
 import { z } from "zod";
 import { ProductDetails } from "./components/ProductDetails";
 import { Card } from "@/components/ui/card";
+
+
+export const revalidate = 0
 
 const Product = async ({
   params,

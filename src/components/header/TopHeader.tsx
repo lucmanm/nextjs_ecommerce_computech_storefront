@@ -1,25 +1,36 @@
-import Image from "next/image";
 import Link from "next/link";
 import LocaleSwitcher from "./LocaleSwitcher";
-import { Car, Heart, User } from "lucide-react";
+import { Car, Heart } from "lucide-react";
+import { useLocale } from "next-intl";
+import { auth } from "@/lib/auth";
+import { SignInSignOutButton } from "./SignInSignOutButton";
 
 //Top Navigation Information
 const topNavigationMenu = [
-  {
-    name: "SignIn",
-    url: "/auth/sign-in",
-    icon: <User />,
-  },
-  { name: "Wishlist", url: "/", icon: <Heart />, altImage: "heart" },
+  // {
+  //   name: "SignIn",
+  //   url: "/login",
+  //   icon: <User />,
+  // },
+  { name: "Wishlist", url: "/wishlist", icon: <Heart />, altImage: "heart" },
   { name: "Tracking", url: "/", icon: <Car />, altImage: "truck" },
-];
+] as const;
 
-const TopHeader = () => {
+export const TopHeader = async () => {
+  const locale = useLocale();
+  const session = await auth();
+  const user = session?.user
   return (
     <div className="container relative flex justify-between border-b">
       <div className="flex items-center gap-4">
+       <SignInSignOutButton user={user}/>
+
         {topNavigationMenu.map((data, index) => (
-          <Link key={index} href={data.url} className="flex inset-0 space-x-2">
+          <Link
+            key={index}
+            href={`/${locale}/${data.url}`}
+            className="inset-0 flex space-x-2"
+          >
             <span>{data.icon}</span>
             <span>{data.name}</span>
           </Link>
@@ -31,5 +42,3 @@ const TopHeader = () => {
     </div>
   );
 };
-
-export default TopHeader;

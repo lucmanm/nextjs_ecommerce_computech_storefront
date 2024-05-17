@@ -6,7 +6,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { getProductCategory } from "@/lib/actions/getCategory";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 // unused

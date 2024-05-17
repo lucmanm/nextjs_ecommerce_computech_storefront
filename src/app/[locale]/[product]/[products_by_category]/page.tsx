@@ -1,4 +1,4 @@
-import { getProductsByCategory } from "@/lib/actions/getProducts";
+import { getProductsByCategory } from "@/actions/getProducts";
 import { productsSchema } from "@/zod.type";
 import { z } from "zod";
 import NoResult from "./_components/NoResult";

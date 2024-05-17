@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { ExpandIcon, ShoppingCartIcon } from "lucide-react";
+import { ExpandIcon, Heart, ShoppingCartIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import { z } from "zod";
 import { productsSchema } from "@/zod.type";
@@ -8,7 +8,7 @@ import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hook/usePreviewModal";
 import { useRouter } from "next/navigation";
 import { CustomButton } from "./CustomButton";
-import { useCart } from "@/hook/useCart";
+import { useCart, useWishlist } from "@/hook/createPersistedHook";
 
 export const ProductCard = ({
   item,
@@ -18,7 +18,13 @@ export const ProductCard = ({
   const router = useRouter();
   const locale = useLocale();
   const { onPreview } = usePreviewModal();
-  const { addItem } = useCart();
+ const cart = useCart()
+ const wishlist = useWishlist()
+
+  const addToWishlist: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    wishlist.addItem(item);
+  };
 
   const Preview: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
@@ -27,7 +33,7 @@ export const ProductCard = ({
 
   const onAddtoCart: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
-    addItem(item);
+    cart.addItem(item);
   };
 
   const handleNavigation = () => {
@@ -80,13 +86,18 @@ export const ProductCard = ({
             {/* {item.salePrice !== "" && ""} */}
           </p>
         </div>
-        <div className="">
+        <div className="text-black">
           <div className="mx-auto flex justify-evenly">
+            <CustomButton
+              onClick={addToWishlist}
+              icon={<Heart size={24} className="text-blue-950" />}
+            />
             <CustomButton
               onClick={Preview}
               icon={<ExpandIcon size={24} className="text-blue-950" />}
             />
             <CustomButton
+              isDisabled={Number(item.stock) === 0 ? true : false}
               onClick={onAddtoCart}
               icon={<ShoppingCartIcon size={24} className="text-blue-950" />}
             />

@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Brand {
+  id         String    @id
+  name       String
+  imageUrl   String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  languageId String
+  Language   Language  @relation(fields: [languageId], references: [id])
+  Product    Product[]
+}
+
+model Category {
+  id         String    @id
+  name       String
+  imageUrl   String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime
+  languageId String
+  Language   Language  @relation(fields: [languageId], references: [id])
+  Product    Product[]
+}
+
+model Language {
+  id          String     @id
+  code        String
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime
+  description String
+  Brand       Brand[]
+  Category    Category[]
+  Slider      Slider[]
+}
+
+model Product {
+  id                 String   @id
+  model              String
+  stock              Int
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime
+  isFeatured         Boolean  @default(false)
+  isLive             Boolean  @default(true)
+  price              Decimal
+  taxValue           Decimal
+  brandId            String
+  categoryId         String
+  shortDescriptionAr String
+  shortDescriptionEn String
+  Brand              Brand    @relation(fields: [brandId], references: [id])
+  Category           Category @relation(fields: [categoryId], references: [id])
+}
+
+model Slider {
+  id         String   @id
+  name       String
+  imageUrl   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+  languageId String
+  Language   Language @relation(fields: [languageId], references: [id])
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  // Authenticator Authenticator[]
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([provider, providerAccountId])
+}
+ 
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@id([identifier, token])
+}
+ 
+// Optional for WebAuthn support
+// model Authenticator {
+//   credentialID         String  @unique
+//   userId               String
+//   providerAccountId    String
+//   credentialPublicKey  String
+//   counter              Int
+//   credentialDeviceType String
+//   credentialBackedUp   Boolean
+//   transports           String?
+ 
+//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+//   @@id([userId, credentialID])
+// }
+

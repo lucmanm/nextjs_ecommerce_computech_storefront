@@ -1,7 +1,7 @@
 import { CarouselBrandRow } from "@/components/CarouselBrandRow";
 import { CarouselProductRow } from "@/components/CarouselProductRow";
 import { CarouselWide } from "@/components/CarouselWide";
-import { getCarouselWide } from "@/lib/actions/getCarousel";
+import { getCarouselWide } from "@/actions/getCarousel";
 
 
 export default async function Home({ params }: { params: { locale: string } }) {

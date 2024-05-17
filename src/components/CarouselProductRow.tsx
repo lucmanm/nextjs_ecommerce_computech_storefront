@@ -6,12 +6,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { getProducts } from "@/lib/actions/getProducts";
+import { getProducts } from "@/actions/getProducts";
 import useTextDirection from "@/hook/useTextDirection";
 import { useLocale } from "next-intl";
-import { string, z } from "zod";
 import { productsSchema } from "@/zod.type";
 import { ProductCard } from "./ProductCard";
+import { z } from "zod";
 
 export async function CarouselProductRow({ titleLeft }: { titleLeft: string }) {
   const locale = useLocale();
