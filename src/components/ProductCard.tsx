@@ -37,8 +37,7 @@ export const ProductCard = ({
   };
 
   const handleNavigation = () => {
-    const productDescription = item.shortDescriptionEn;
-    router.push(`/${locale}/${productDescription}`);
+    router.push(`/${locale}/${item.model}`);
   };
 
   return (

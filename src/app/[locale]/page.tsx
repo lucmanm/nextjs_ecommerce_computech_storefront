@@ -12,8 +12,8 @@ export default async function Home({ params }: { params: { locale: string } }) {
       <CarouselWide item={carouselWide} />
       <CarouselBrandRow />
       <CarouselProductRow titleLeft="Featured" />
-      <CarouselProductRow titleLeft="Desktop" />
-      <CarouselProductRow titleLeft="Laptop" />
+      {/* <CarouselProductRow titleLeft="Desktop" /> */}
+      {/* <CarouselProductRow titleLeft="Laptop" /> */}
     </main>
   );
 }
