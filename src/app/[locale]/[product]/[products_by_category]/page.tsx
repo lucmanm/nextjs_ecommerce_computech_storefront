@@ -1,4 +1,4 @@
-import { getProductsByCategory } from "@/actions/getProducts";
+import { getProductsByCategoryOrBrand } from "@/actions/getProducts";
 import { productsSchema } from "@/zod.type";
 import { z } from "zod";
 import NoResult from "./_components/NoResult";
@@ -12,7 +12,7 @@ const ProductsByCategory = async ({
   const { locale, products_by_category } = params;
 
   const productsByCategoryData: z.infer<typeof productsSchema>[] =
-    await getProductsByCategory(locale, products_by_category);
+    await getProductsByCategoryOrBrand(locale, products_by_category);
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {productsByCategoryData.length === 0 ? (

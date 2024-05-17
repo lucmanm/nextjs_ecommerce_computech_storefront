@@ -18,14 +18,14 @@ export async function getProducts(locale: string) {
 
 // fetch all product by category
 
-export async function getProductsByCategory(
+export async function getProductsByCategoryOrBrand(
   locale: string,
-  productsByCategory: string,
+  ProductsByCategoryOrBrand: string,
 ) {
   const res = await fetch(
-    `${env.NEXT_DEV_API_URL}/${locale}/product/${productsByCategory}`,
+    `${env.NEXT_DEV_API_URL}/${locale}/product/${ProductsByCategoryOrBrand}`,
   );
   if (!res.ok) throw new Error("FAIL_FETCH_GET_PRODUCTS_BY_CATEGORY");
   const data = await res.json();
-  return data;
+  return data.result;
 }
