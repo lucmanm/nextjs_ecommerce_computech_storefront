@@ -3,7 +3,7 @@
 import { ProductPreviewModal } from "@/components/modal/ProductPreviewModal";
 import { useEffect, useState } from "react";
 
-
+// unused components
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 

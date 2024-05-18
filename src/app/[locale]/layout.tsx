@@ -6,9 +6,9 @@ import "../globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import Footer from "@/components/Footer";
-import ModalProvider from "@/provider/ModalProvide";
 import { Toaster } from "@/components/ui/toaster";
 import useTextDirection from "@/hook/useTextDirection";
+import { ProductPreviewModal } from "@/components/modal/ProductPreviewModal";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,14 +29,14 @@ export default function RootLayout({
 
   return (
     <html lang={locale} dir={direction}>
-      <body className={cn(fontSans.variable)}>
+      <body className={cn(`${fontSans.variable} min-h-screen`)}>
         <main className="flex  flex-col bg-background bg-slate-100 font-sans">
           <NextIntlClientProvider messages={messages}>
-            <ModalProvider />
             <Header />
             {children}
             <Footer />
             <Toaster />
+            <ProductPreviewModal />
           </NextIntlClientProvider>
         </main>
       </body>

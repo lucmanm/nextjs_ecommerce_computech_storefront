@@ -5,7 +5,7 @@ export async function getProduct(locale: string, product: string) {
   const res = await fetch(`${env.NEXT_DEV_API_URL}/${locale}/${product}`);
   if (!res.ok) throw new Error("FAIL_FETCH_GET_PRODUCT");
   const data = await res.json();
-  return data;
+  return data.product;
 }
 
 // fetch all products

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ExpandIcon, Heart, ShoppingCartIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import { z } from "zod";
-import { productsSchema } from "@/lib/zod.type";
+import { productsSchema } from "@/lib/zodDataType";
 import { MouseEventHandler } from "react";
 import usePreviewModal from "@/hook/usePreviewModal";
 import { useRouter } from "next/navigation";
@@ -37,10 +37,10 @@ export const ProductCard = ({
   };
 
   const handleNavigation = () => {
-    router.push(`/${locale}/${item.model}`);
+    router.push(`/${locale}/${item.id}`);
   };
 
-  const sumPriceWithVat = ((item.price + 17) * 1.15)
+  const sumPriceWithVat = (item.price * 1.15) 
 
   return (
     <div

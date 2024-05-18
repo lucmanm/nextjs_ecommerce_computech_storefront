@@ -8,7 +8,7 @@ import {
 import { getProducts } from "@/actions/getProducts";
 import useTextDirection from "@/hook/useTextDirection";
 import { useLocale } from "next-intl";
-import { productsSchema } from "@/lib/zod.type";
+import { productsSchema } from "@/lib/zodDataType";
 import { ProductCard } from "./ProductCard";
 import { z } from "zod";
 import Link from "next/link";
@@ -30,7 +30,7 @@ export async function CarouselProductRow({ title }: { title: string }) {
       }}
       className="w-full"
     >
-      <div className="flex justify-between *:relative *:max-w-fit *:rounded-full *:bg-white *:px-4  *:font-bold *:capitalize *:text-blue-950 *:shadow-md">
+      <div className="flex justify-between *:relative *:max-w-fit *:rounded-full *:bg-white *:px-4  *:font-medium *:capitalize *:text-blue-950 *:shadow-md">
         <span>{title}</span>
         <Link href={`/${locale}/product/${title}`}>
           <span>View More</span>

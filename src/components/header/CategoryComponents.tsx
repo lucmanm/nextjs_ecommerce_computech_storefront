@@ -1,4 +1,4 @@
-import { categorySchema } from "@/lib/zod.type";
+import { categorySchema } from "@/lib/zodDataType";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import { z } from "zod";

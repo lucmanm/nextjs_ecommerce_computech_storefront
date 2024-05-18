@@ -47,7 +47,7 @@ export async function CarouselBrandRow() {
                 </CardContent>
                 </Link>
               </Card>
-              <span className="font-semibold capitalize">{data.name}</span>
+              {/* <span className="font-semibold capitalize">{data.name}</span> */}
             </div>
           </CarouselItem>
         ))}

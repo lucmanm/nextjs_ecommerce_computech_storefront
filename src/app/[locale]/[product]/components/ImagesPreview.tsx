@@ -22,45 +22,47 @@ const images = [
       "https://res.cloudinary.com/dzdcszrob/image/upload/v1700898126/ad5klzi8le2bo2pju3ch.webp",
   },
 ];
-
-export const ImagesPreview = () => {
+type TImagesPreview = { className?: string | undefined };
+export const ImagesPreview: React.FC<TImagesPreview> = ({ className }) => {
   return (
-    <Tab.Group>
-      <div className="flex w-full flex-col md:w-fit">
-        <Tab.List>
-          <Tab.Panels>
-            {images.map((data, index) => (
-              <Tab.Panel key={index}>
-                <Image
-                  width={400}
-                  height={400}
-                  src={data.imageUrl}
-                  alt={data.imageUrl}
-                  className="w-full rounded-lg"
-                />
-              </Tab.Panel>
-            ))}
-          </Tab.Panels>
-          <div className="flex min-w-fit items-center justify-center space-x-2 p-2">
-            {images.map((_, index) => (
-              <Tab as={Fragment} key={index}>
-                {({ selected }) => (
-                  <div className="flex flex-wrap">
-                    <CustomButton
-                      className={cn(
-                        "h-14 w-14 rounded-sm bg-slate-600",
-                        selected ? "bg-white ring-2 ring-blue-600" : "bg-white",
-                      )}
-                    >
-                      Image
-                    </CustomButton>
-                  </div>
-                )}
-              </Tab>
-            ))}
-          </div>
-        </Tab.List>
-      </div>
-    </Tab.Group>
+    <section className={cn("border w-1/2 overflow-hidden",className)}>
+      <Tab.Group >
+          <Tab.List>
+            <Tab.Panels>
+              {images.map((data, index) => (
+                <Tab.Panel key={index}>
+                  <Image
+                    width={400}
+                    height={400}
+                    src={data.imageUrl}
+                    alt={data.imageUrl}
+                    className="w-full rounded-lg"
+                  />
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
+            <div className="flex min-w-fit items-center justify-center space-x-2 p-2 border">
+              {images.map((_, index) => (
+                <Tab as={Fragment} key={index}>
+                  {({ selected }) => (
+                    <div className="flex flex-wrap">
+                      <CustomButton
+                        className={cn(
+                          "h-14 w-14 rounded-sm bg-slate-600",
+                          selected
+                            ? "bg-white ring-2 ring-blue-600"
+                            : "bg-white",
+                        )}
+                      >
+                        Image
+                      </CustomButton>
+                    </div>
+                  )}
+                </Tab>
+              ))}
+            </div>
+          </Tab.List>
+      </Tab.Group>
+    </section>
   );
 };
