@@ -30,16 +30,11 @@ export async function CarouselProductRow({ title }: { title: string }) {
       }}
       className="w-full"
     >
-      <div className="flex justify-between">
-
-      <span className="relative max-w-fit rounded-full bg-white px-4  font-bold text-blue-950 shadow-md">
-        {title}
-      </span>
-      <Link href={`/${locale}/product/${title}`}>
-      <span className="relative max-w-fit rounded-full bg-white px-4  font-bold text-blue-950 shadow-md">
-        View More
-      </span>
-      </Link>
+      <div className="flex justify-between *:relative *:max-w-fit *:rounded-full *:bg-white *:px-4  *:font-bold *:capitalize *:text-blue-950 *:shadow-md">
+        <span>{title}</span>
+        <Link href={`/${locale}/product/${title}`}>
+          <span>View More</span>
+        </Link>
       </div>
       <CarouselContent className="py-6">
         {products.map((item, index) => (
@@ -49,5 +44,5 @@ export async function CarouselProductRow({ title }: { title: string }) {
         ))}
       </CarouselContent>
     </Carousel>
-  ) 
+  );
 }

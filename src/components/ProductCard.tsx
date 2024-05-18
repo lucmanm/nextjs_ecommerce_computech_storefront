@@ -40,7 +40,7 @@ export const ProductCard = ({
     router.push(`/${locale}/${item.model}`);
   };
 
-  const sumPriceWithVat = item.price * 1.15
+  const sumPriceWithVat = ((item.price + 17) * 1.15)
 
   return (
     <div
