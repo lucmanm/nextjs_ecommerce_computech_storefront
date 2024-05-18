@@ -11,6 +11,7 @@ import { useLocale } from "next-intl";
 import { productsSchema } from "@/lib/zod.type";
 import { ProductCard } from "./ProductCard";
 import { z } from "zod";
+import Link from "next/link";
 
 export async function CarouselProductRow({ title }: { title: string }) {
   const locale = useLocale();
@@ -29,9 +30,17 @@ export async function CarouselProductRow({ title }: { title: string }) {
       }}
       className="w-full"
     >
+      <div className="flex justify-between">
+
       <span className="relative max-w-fit rounded-full bg-white px-4  font-bold text-blue-950 shadow-md">
         {title}
       </span>
+      <Link href={`/${locale}/product/${title}`}>
+      <span className="relative max-w-fit rounded-full bg-white px-4  font-bold text-blue-950 shadow-md">
+        View More
+      </span>
+      </Link>
+      </div>
       <CarouselContent className="py-6">
         {products.map((item, index) => (
           <CarouselItem key={index} className="basis-1/2 lg:basis-1/5 ">

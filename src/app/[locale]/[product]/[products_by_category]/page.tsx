@@ -15,7 +15,7 @@ const ProductsByCategory = async ({
     await getProductsByCategoryOrBrand(locale, products_by_category);
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-      {productsByCategoryData.length === 0 ? (
+      {!productsByCategoryData ? (
         <NoResult />
       ) : (
         productsByCategoryData.map((data, index) => (

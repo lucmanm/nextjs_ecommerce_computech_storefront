@@ -40,6 +40,8 @@ export const ProductCard = ({
     router.push(`/${locale}/${item.model}`);
   };
 
+  const sumPriceWithVat = item.price * 1.15
+
   return (
     <div
       onClick={handleNavigation}
@@ -77,7 +79,7 @@ export const ProductCard = ({
               SR
             </span>
             <h2 className="leading-0 self-end  p-0 text-xl font-bold text-blue-950">
-              {item.price}
+              {sumPriceWithVat.toFixed(0)}
             </h2>
           </div>
 
